@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Finebit Browser</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Geri Bildirim Penceresi Stilleri */
+    #feedback-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1e293b;
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      z-index: 9999;
+      width: 320px;
+      font-family: sans-serif;
+    }
+    #feedback-modal h3 { margin-top: 0; color: #38bdf8; }
+    #feedback-modal input, #feedback-modal textarea {
+      width: 100%;
+      margin: 8px 0;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: white;
+      box-sizing: border-box;
+    }
+    #feedback-modal button.send-btn {
+      width: 100%;
+      background: #38bdf8;
+      border: none;
+      color: #0f172a;
+      font-weight: bold;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #feedback-modal button.close-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      float: right;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <button id="home" title="Ana Sayfa">🏠</button>
+    <button id="back">◀</button>
+    <button id="forward">▶</button>
+    <button id="reload">🔄</button>
+    <input type="text" id="url-input" placeholder="Arayın veya adres yazın...">
+    <button id="feedback-btn" title="Hata / Geri Bildirim Yap">💬</button>
+  </div>
+
+  <webview id="browser-view" src="home.html"></webview>
+
+  <!-- Finebit İçi Hata Bildirim Penceresi -->
+  <div id="feedback-modal">
+    <button class="close-btn" id="close-feedback">✖</button>
+    <h3>Finebit Geri Bildirim</h3>
+    <form action="https://formspree.io/f/xoeevjqn" method="POST">
+      <input type="email" name="email" placeholder="E-posta adresiniz" required>
+      <textarea name="message" rows="4" placeholder="Karşılaştığınız hatayı veya önerinizi yazın..." required></textarea>
+      <button type="submit" class="send-btn">Gönder</button>
+    </form>
+  </div>
+
+  <script>
+    const webview = document.getElementById('browser-view');
+    const urlInput = document.getElementById('url-input');
+    const homeBtn = document.getElementById('home');
+    const backBtn = document.getElementById('back');
+    const forwardBtn = document.getElementById('forward');
+    const reloadBtn = document.getElementById('reload');
+
+    // Geri Bildirim Buton ve Modal Mantığı
+    const feedbackBtn = document.getElementById('feedback-btn');
+    const feedbackModal = document.getElementById('feedback-modal');
+    const closeFeedback = document.getElementById('close-feedback');
+
+    feedbackBtn.addEventListener('click', () => {
+      feedbackModal.style.display = 'block';
+    });
+
+    closeFeedback.addEventListener('click', () => {
+      feedbackModal.style.display = 'none';
+    });
+
+    webview.addEventListener('dom-ready', () => {
+      let currentURL = webview.getURL();
+      if (currentURL.endsWith('home.html')) {
+        urlInput.value = '';
+      } else {
+        urlInput.value = currentURL;
+      }
+    });
+
+    homeBtn.addEventListener('click', () => { webview.src = 'home.html'; });
+    backBtn.addEventListener('click', () => { if (webview.canGoBack()) webview.goBack(); });
+    forwardBtn.addEventListener('click', () => { if (webview.canGoForward()) webview.goForward(); });
+    reloadBtn.addEventListener('click', () => { webview.reload(); });
+
+    urlInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        let url = urlInput.value.trim();
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+          url = 'https://' + url;
+        }
+        webview.src = url;
+      }
+    });
+  </script>
+</body>
+</html>

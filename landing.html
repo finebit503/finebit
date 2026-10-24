@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finebit Browser - Hızlı, Güvenli & Özgür Web</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { font-size: 3.5rem; color: #38bdf8; margin-bottom: 10px; }
+    p.subtitle { font-size: 1.2rem; color: #94a3b8; margin-bottom: 40px; }
+    
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+    .card {
+      background: #1e293b;
+      padding: 25px 20px;
+      border-radius: 16px;
+      border: 1px solid #334155;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover { transform: translateY(-5px); border-color: #38bdf8; }
+    .card h3 { margin-bottom: 15px; font-size: 1.3rem; color: #f1f5f9; }
+    
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .btn-win { background: #0078d4; color: white; }
+    .btn-win:hover { background: #005a9e; }
+    
+    .btn-linux { background: #e95420; color: white; }
+    .btn-linux:hover { background: #c34113; }
+    
+    .btn-android { background: #3ddc84; color: #0f172a; }
+    .btn-android:hover { background: #32b86c; }
+
+    .btn-disabled { background: #475569; color: #cbd5e1; cursor: not-allowed; }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #334155;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      margin-top: 12px;
+      color: #94a3b8;
+    }
+
+    footer { color: #64748b; margin-top: 50px; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Finebit Browser</h1>
+    <p class="subtitle">Masaüstü ve Mobil için geliştirilmiş sadelik, hız ve özgürlük sunan web tarayıcısı.</p>
+
+    <div class="download-grid">
+      <!-- Windows Card -->
+      <div class="card">
+        <h3>🪟 Windows</h3>
+        <p style="color: #94a3b8; margin-bottom: 20px;">Windows 10 / 11</p>
+        <a href="Finebit-1.0.0-win.zip" class="btn btn-win">İndir (.ZIP)</a>
+        <span class="badge">v1.0.0 Hazır</span>
+      </div>
+
+      <!-- Linux Card -->
+      <div class="card">
+        <h3>🐧 Linux</h3>
+        <p style="color: #94a3b8; margin-bottom: 20px;">Ubuntu, Arch & Debian</p>
+        <a href="#" class="btn btn-linux">Paket İndir</a>
+        <span class="badge">v1.0.0 Hazır</span>
+      </div>
+
+      <!-- Android Card -->
+      <div class="card">
+        <h3>🤖 Android</h3>
+        <p style="color: #94a3b8; margin-bottom: 20px;">Android 8.0+</p>
+        <a href="#" class="btn btn-android">APK Çok Yakında</a>
+        <span class="badge">Hazırlanıyor</span>
+      </div>
+
+      <!-- iOS / macOS Card -->
+      <div class="card">
+        <h3>🍎 iOS / macOS</h3>
+        <p style="color: #94a3b8; margin-bottom: 20px;">iPhone & Mac</p>
+        <a href="#" class="btn btn-disabled">Yakında Gelecek</a>
+        <span class="badge">Planlanıyor</span>
+      </div>
+    </div>
+
+    <footer>
+      &copy; 2026 Finebit Browser Project. Mertcan tarafından geliştirildi. 🚀
+    </footer>
+  </div>
+</body>
+</html>
